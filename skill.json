@@ -1,0 +1,46 @@
+{
+  "name": "genpark-visual-diagram-architecture-synthesizer-skill",
+  "version": "1.0.0",
+  "description": "Multi-Modal Visual Diagram-to-Code Architecture Synthesizer. Translates geometric bounding boxes, flowchart node connections, and architectural sketches into clean Mermaid graphs, JSON topology matrices, and boilerplate code scaffolds.",
+  "tools": [
+    {
+      "name": "synthesize_architecture_diagram",
+      "description": "Visual diagram to code: parse diagram node bounding boxes and connections, generate Mermaid diagram syntax, and synthesize modular skeleton code scaffolds.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "synthesize_architecture_from_diagram",
+              "generate_mermaid_graph",
+              "scaffold_python_classes"
+            ],
+            "description": "Diagram synthesis action."
+          },
+          "diagram_title": {
+            "type": "string",
+            "description": "Title of the architecture diagram."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of diagram nodes [id, label, type, x, y]."
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of directional edges [source_id, target_id, relation]."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
